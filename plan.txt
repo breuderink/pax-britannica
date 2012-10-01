@@ -1,0 +1,13 @@
+In this file I document journey in the source of Pax Britannica.
+
+# 2012-10-1
+Today I read some of the Lua files. It seems that there is a very generic
+engine written in C, and that the game is fully written in Lua. This makes
+thing --- I think --- much easier.
+
+Also, the '--debug' argument is quite interesting; space speeds up the game,
+and the keys Z, X, C, V can be used to quickly build without consuming
+resources.
+
+For future hacking, the logging and the_on_button files seems most interesting. Controlling the speed of time might be very interesting form the BCI POV.
+
