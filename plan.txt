@@ -1,9 +1,10 @@
-In this file I document journey in the source of Pax Britannica.
+In this file I (Boris Reuderink) document journey in the source of Pax
+Britannica.
 
 # 2012-10-1
 Today I read some of the Lua files. It seems that there is a very generic
 engine written in C, and that the game is fully written in Lua. This makes
-thing --- I think --- much easier.
+things --- I think --- much easier.
 
 Also, the '--debug' argument is quite interesting; space speeds up the game,
 and the keys Z, X, C, V can be used to quickly build without consuming
@@ -11,3 +12,10 @@ resources.
 
 For future hacking, the logging and the_on_button files seems most interesting. Controlling the speed of time might be very interesting form the BCI POV.
 
+# 2012-12-3
+The BCI client in C is in a working state (externally developed). So, the trick is now to:
+1 duplicate the keyboard code,
+2 add a new set of keys to see that it works,
+3 add the mindplay c code, and recompile,
+4 and finally, integrate the mindplay init and destroy calls,
+5 and poll for high probability events, and assign a key press.
