@@ -3,6 +3,8 @@ APPNAME=PaxBritannica
 
 PLATFORMS=linux macosx mingw
 
+EXTRA_CFLAGS=-std=c99
+
 help:
 	@echo No platform given, printing help :D
 	@echo
@@ -12,10 +14,11 @@ $(PLATFORMS):
 	make -C dokidoki-support $@ \
 		NAME="../$(NAME)" \
 		EXTRA_CFLAGS="-DEXTRA_LOADERS='\"../extra_loaders.h\"' $(EXTRA_CFLAGS)" \
-		EXTRA_OBJECTS="../particles.o"
+		EXTRA_OBJECTS="../particles.o ../mindplay.o" \
+		EXTRA_LDFLAGS="-lcurl -ljansson"
 
 clean:
-	rm -f particles.o
+	rm -f particles.o mindplay.o
 	make -C dokidoki-support clean NAME="../$(NAME)"
 
 $(APPNAME).app: macosx Info.plist
