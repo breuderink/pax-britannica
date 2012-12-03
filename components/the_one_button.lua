@@ -1,4 +1,5 @@
 require 'glfw'
+require 'math'
 
 local old_states = {}
 local states = {}
@@ -40,6 +41,14 @@ game.actors.new_generic('the_one_button', function ()
       states[i] =
         game.keyboard.key_held(player_keys[i]) or
         glfw.GetJoystickButtons(player_joysticks[i], 1)[1] == glfw.PRESS
+
+      if i == 4 then
+        -- add some fake BCI input:
+        states[i] = old_states[i]
+        if math.random() > .99 then
+          states[i] = not old_states[i]
+        end
+      end
     end
   end
 end)
