@@ -14,8 +14,8 @@ $(PLATFORMS):
 	make -C dokidoki-support $@ \
 		NAME="../$(NAME)" \
 		EXTRA_CFLAGS="-DEXTRA_LOADERS='\"../extra_loaders.h\"' $(EXTRA_CFLAGS)" \
-		EXTRA_OBJECTS="../particles.o ../mindplay.o" \
-		EXTRA_LDFLAGS="-lcurl -ljansson"
+		EXTRA_OBJECTS="../particles.o ../mindplay_lua.o" \
+		EXTRA_LDFLAGS="-lcurl -ljansson -L.. -lmindplay"
 
 clean:
 	rm -f particles.o mindplay.o
