@@ -75,6 +75,8 @@ local function start_game()
         end
       end
 
+      game.the_one_button.reset() -- reset the button to being released.
+
       state = 'in_game'
       game.actors.new(blueprints.fade_in)
     end})

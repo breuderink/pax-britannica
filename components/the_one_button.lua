@@ -33,6 +33,11 @@ function released(i)
   return not states[i] and old_states[i]
 end
 
+function reset()
+  states = {false, false, false, false}
+  old_states = states
+end
+
 game.actors.new_generic('the_one_button', function ()
   function update_setup ()
     old_states = states
