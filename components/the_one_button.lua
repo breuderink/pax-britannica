@@ -2,7 +2,7 @@ require 'glfw'
 require 'math'
 
 local old_states = {}
-local states = {}
+states = {false, false, false, false}
 
 local player_keys = {
   string.byte('A'),
@@ -36,16 +36,18 @@ end
 game.actors.new_generic('the_one_button', function ()
   function update_setup ()
     old_states = states
-    states = {false, false, false, false}
     for i = 1, 4 do
-      states[i] =
-        game.keyboard.key_held(player_keys[i]) or
-        glfw.GetJoystickButtons(player_joysticks[i], 1)[1] == glfw.PRESS
+      -- Toggle virtual button with keyboard or joystick:
+      if game.keyboard.key_pressed(player_keys[i]) or
+        glfw.GetJoystickButtons(player_joysticks[i], 1)[1] == glfw.PRESS then
+        states[i] = not old_states[i] 
+      end
 
-      if i == 4 then
-        -- add some fake BCI input:
+      -- Toggle virtual button with brain-computer interface
+      if i == 1 then
+        -- read BCI input
         states[i] = old_states[i]
-        if math.random() > .99 then
+        if game.brain_computer_interface.pressed() then
           states[i] = not old_states[i]
         end
       end

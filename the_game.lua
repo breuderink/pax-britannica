@@ -37,6 +37,7 @@ function make ()
       game.init_component('tracing')
       game.init_component('log')
       game.init_component('fast_forward')
+      game.init_component('brain_computer_interface')
       game.init_component('the_one_button')
       game.init_component('debug_keys')
 
