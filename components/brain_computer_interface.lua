@@ -12,6 +12,13 @@ function pressed()
   end
   return false
 end
+
+
+function annotate(s)
+  print(os.clock() .. ' TODO: annotate "' .. s .. '"')
+end
+
+
     
 
 -- TODO: make this configurable, and perform some error handling?

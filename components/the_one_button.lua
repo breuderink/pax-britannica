@@ -46,6 +46,10 @@ game.actors.new_generic('the_one_button', function ()
       if game.keyboard.key_pressed(player_keys[i]) or
         glfw.GetJoystickButtons(player_joysticks[i], 1)[1] == glfw.PRESS then
         states[i] = not old_states[i] 
+
+        if i == 1 then
+          game.brain_computer_interface.annotate('Button pressed.')
+        end
       end
 
       -- Toggle virtual button with brain-computer interface

@@ -76,6 +76,7 @@ local function start_game()
       end
 
       game.the_one_button.reset() -- reset the button to being released.
+      game.brain_computer_interface.annotate('Game started.')
 
       state = 'in_game'
       game.actors.new(blueprints.fade_in)
@@ -126,6 +127,9 @@ function update()
   elseif state == 'in_game' then
     if #game.actors.get('factory') < 2 then
       game_over_timer = game_over_timer + 1
+      if game_over_timer == 1 then
+        game.brain_computer_interface.annotate('Game over.')
+      end
       if game_over_timer > 300 then
         game.actors.new(blueprints.fade_out, {'fade', callback=function ()
           game.log.print_stats()
