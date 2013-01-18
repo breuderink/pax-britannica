@@ -14,11 +14,11 @@ $(PLATFORMS):
 	make -C dokidoki-support $@ \
 		NAME="../$(NAME)" \
 		EXTRA_CFLAGS="-DEXTRA_LOADERS='\"../extra_loaders.h\"' $(EXTRA_CFLAGS)" \
-		EXTRA_OBJECTS="../particles.o ../mindplay_lua.o" \
-		EXTRA_LDFLAGS="-lcurl -ljansson -L.. -lmindplay"
+		EXTRA_OBJECTS="../particles.o ../idport_lua.o" \
+		EXTRA_LDFLAGS="-lcurl -ljansson -L.. -lidport"
 
 clean:
-	rm -f particles.o mindplay.o
+	rm -f particles.o idport.o
 	make -C dokidoki-support clean NAME="../$(NAME)"
 
 $(APPNAME).app: macosx Info.plist
