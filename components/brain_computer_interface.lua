@@ -13,6 +13,7 @@ local RESPONSE_INVALID = 3
 local function cleanup_transfers(list)
   for i, r in ipairs(list) do
     s = idport.response_status(r)
+    assert(s ~= RESPONSE_INVALID, 'Invalid response from server!')
     if (s == RESPONSE_READY) or (s == RESPONSE_INVALID) then
       idport.response_destroy(r)
       table.remove(list, i)
