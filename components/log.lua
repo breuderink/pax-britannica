@@ -35,13 +35,13 @@ end
 function record_spawn(spawned)
   spawn[spawned.name] = spawn[spawned.name] or 0
   spawn[spawned.name] = spawn[spawned.name] + 1
-  game.brain_computer_interface.annotate('Spawned ' .. spawned.name)
+  game.brain_computer_interface.annotate('Spawned ' .. spawned.name .. '.')
 end
 
 function record_death(killed)
   death[killed.name] = death[killed.name] or 0
   death[killed.name] = death[killed.name] + 1
-  game.brain_computer_interface.annotate('Killed ' .. killed.name)
+  game.brain_computer_interface.annotate('Killed ' .. killed.name .. '.')
 end
 
 function record_hit(receiver, bullet)
