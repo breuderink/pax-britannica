@@ -38,6 +38,13 @@ end
 
 function annotate(s)
   print("Annotating: " .. s) 
+  if idp == nill then
+    -- FIXME: this is odd; it seems idp is initialized a second time
+    -- here.
+    print ('Initializing IDport...')
+    idp = idport.init(idport_url)
+    assert(idp)
+  end
   r = idport.annotate(idp, idport_user, idport_stream, 'Pax Brittanica', s)
   if r then table.insert(annotations, r) end
 end
@@ -51,6 +58,7 @@ game.actors.new_generic('log', function()
     -- This is running every (?) frame. We repeatedly request a
     -- detection, and store the results when they arrive.
     if idp == nill then
+      print ('Initializing IDport...')
       idp = idport.init(idport_url)
       assert(idp)
     end
