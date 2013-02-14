@@ -26,13 +26,6 @@ local detections = {}
 local annotations = {}
 local probability = 0/0 -- TODO: replace with table.
 
--- These config values are (somehow) overridden in the_game.lua.
-idport_url = 'localhost:5000'
-idport_user = 'default_user'
-idport_stream = 'default_stream'
-
-local idp = idport.init(idport_url)
-
 
 -- Define functions to be called from within PB:
 function pressed()
@@ -57,6 +50,10 @@ game.actors.new_generic('log', function()
   function update()
     -- This is running every (?) frame. We repeatedly request a
     -- detection, and store the results when they arrive.
+    if idp == nill then
+      idp = idport.init(idport_url)
+      assert(idp)
+    end
 
     if os.clock() > next_request then
       -- It is time to request a new detection, and schedule the next.
