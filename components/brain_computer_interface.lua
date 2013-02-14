@@ -22,14 +22,16 @@ local function cleanup_transfers(list)
 end
 
 -- Initialize API and setup bookkeeping.
-local server = 'localhost:5000'
-local user_id ='pax_user'
-local stream_id = 'pax_stream'
 local detections = {}
 local annotations = {}
 local probability = 0/0 -- TODO: replace with table.
 
-local idp = idport.init(server) -- TODO: necessary for scoping?
+-- These config values are (somehow) overridden in the_game.lua.
+idport_url = 'localhost:5000'
+idport_user = 'default_user'
+idport_stream = 'default_stream'
+
+local idp = idport.init(idport_url)
 
 
 -- Define functions to be called from within PB:
@@ -43,7 +45,7 @@ end
 
 function annotate(s)
   print("Annotating: " .. s) 
-  r = idport.annotate(idp, user_id, stream_id, 'Pax Brittanica', s)
+  r = idport.annotate(idp, idport_user, idport_stream, 'Pax Brittanica', s)
   if r then table.insert(annotations, r) end
 end
 
@@ -58,7 +60,7 @@ game.actors.new_generic('log', function()
 
     if os.clock() > next_request then
       -- It is time to request a new detection, and schedule the next.
-      r = idport.request_detection(idp, user_id, stream_id)
+      r = idport.request_detection(idp, idport_user, idport_stream)
       if r then table.insert(detections, r) end
       next_request = os.clock() + 1/DETECTIONS_PER_SECOND
     end

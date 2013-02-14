@@ -25,6 +25,7 @@ function make ()
 
       game.init_component('exit_handler')
       game.init_component('keyboard')
+
       game.init_component('opengl_2d')
       game.opengl_2d.width = 1024
       game.opengl_2d.height = 768
@@ -37,7 +38,12 @@ function make ()
       game.init_component('tracing')
       game.init_component('log')
       game.init_component('fast_forward')
+
       game.init_component('brain_computer_interface')
+      game.brain_computer_interface.idport_url = 'localhost:5000'
+      game.brain_computer_interface.idport_user = 'boris'
+      game.brain_computer_interface.idport_stream = '1'
+
       game.init_component('the_one_button')
       game.init_component('debug_keys')
 
