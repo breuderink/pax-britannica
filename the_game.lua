@@ -9,9 +9,25 @@ local blueprints = require 'blueprints'
 
 local music
 
+idport_url = 'localhost:5000'
+idport_user = 'paxb_user'
+idport_stream = 'paxb_stream'
+
 local args = {}
-for _, a in ipairs(arg) do
-  args[a] = true
+for i, a in ipairs(arg) do
+  if a == '--url' then
+    idport_url = arg[i+1]
+  elseif a == '--user' then
+    idport_user = arg[i+1]
+  elseif a == '--stream' then
+    idport_stream = arg[i+1]
+  else
+    args[a] = true
+  end
+end
+
+for i,v in ipairs(args) do 
+  print(i,v) 
 end
 
 function make ()
@@ -40,9 +56,9 @@ function make ()
       game.init_component('fast_forward')
 
       game.init_component('brain_computer_interface')
-      game.brain_computer_interface.idport_url = 'localhost:5000'
-      game.brain_computer_interface.idport_user = 'boris'
-      game.brain_computer_interface.idport_stream = '1'
+      game.brain_computer_interface.idport_url = idport_url
+      game.brain_computer_interface.idport_user = idport_user
+      game.brain_computer_interface.idport_stream = idport_stream
 
       game.init_component('the_one_button')
       game.init_component('debug_keys')
