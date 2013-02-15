@@ -36,15 +36,11 @@ function pressed()
   return false
 end
 
+local idp = nill
+
 function annotate(s)
   print("Annotating: " .. s) 
-  if idp == nill then
-    -- FIXME: this is odd; it seems idp is initialized a second time
-    -- here.
-    print ('Initializing IDport...')
-    idp = idport.init(idport_url)
-    assert(idp)
-  end
+  assert(idp)
   r = idport.annotate(idp, idport_user, idport_stream, 'Pax Brittanica', s)
   if r then table.insert(annotations, r) end
 end
@@ -81,7 +77,7 @@ game.actors.new_generic('log', function()
       end
     end
 
-    cleanup_transfers(detections); 
+    cleanup_transfers(detections) 
     cleanup_transfers(annotations)
   end
 end)
