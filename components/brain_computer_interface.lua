@@ -29,7 +29,7 @@ local probability = 0/0 -- TODO: replace with table.
 
 -- Define functions to be called from within PB:
 function pressed()
-  if probability > .90 then -- this works with NaNs as well.
+  if probability > .56 then -- this works with NaNs as well.
     probability = 0 -- prevent continuous flipping.
     return true
   end
@@ -72,7 +72,7 @@ game.actors.new_generic('log', function()
     -- Loop over and handle responses:
     for i, r in ipairs(detections) do
       if idport.response_status(r) == RESPONSE_READY then
-        probability = idport.detection(r, 'random')
+        probability = idport.detection(r, 'right')
         print('p = ' .. string.format('%.2f', probability))
       end
     end

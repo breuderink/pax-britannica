@@ -9,7 +9,7 @@ local blueprints = require 'blueprints'
 
 local music
 
-idport_url = 'localhost:5000'
+idport_url = 'localhost:8080'
 idport_user = 'paxb_user'
 idport_stream = 'paxb_stream'
 
