@@ -2,7 +2,7 @@ local gl = require 'gl'
 local blueprints = require 'blueprints'
 local v2 = require 'dokidoki.v2'
 
-BUILDING_SPEED = 3
+BUILDING_SPEED = 2
 
 local SEGMENTS = 32
 local RADIUS = 32
